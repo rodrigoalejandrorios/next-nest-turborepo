@@ -1,0 +1,29 @@
+{
+  "name": "test-nest-next",
+  "version": "1.0.0",
+  "description": "Hello world",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "prettier": "^3.0.2",
+    "tsconfig": "*",
+    "turbo": "latest"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "author": "Rodrigo Rios",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.8"
+  }
+}
