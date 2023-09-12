@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import ThemeRegistry from "./components/globals/ThemeRegistry";
+import ThemeRegistry from "./components/shared/ThemeRegistry";
 
 export const metadata: Metadata = {
   title: "Conexa App",

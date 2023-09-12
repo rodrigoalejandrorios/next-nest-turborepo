@@ -1,0 +1,1 @@
+export const HTTP_KEY = 'http:nest'
