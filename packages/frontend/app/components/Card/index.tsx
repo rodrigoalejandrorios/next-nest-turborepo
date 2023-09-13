@@ -11,40 +11,42 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 type CardProps = {
-  image: string;
+  url: string;
   name: string;
-  species: string;
-  status: string;
-  id: number;
+  birth_year: string;
+  height: string;
+  gender: string;
 };
 
 export const CardComponent: React.FC<CardProps> = ({
-  image,
+  birth_year,
+  gender,
+  height,
   name,
-  species,
-  status,
-  id,
+  url,
 }) => {
   const [disabledBtn, setDisabledBtn] = React.useState<boolean>(false);
   const dispatch = useAppDispatch();
 
-  const itemExist = useAppSelector((state) => state.cartReducer);
+  const itemExist = useAppSelector((state) => state.cart);
 
   React.useEffect(() => {
-    setDisabledBtn(itemExist.some((item: any) => item.id === id));
-  }, [itemExist, id]);
+    setDisabledBtn(itemExist.some((item: any) => item.url === url));
+  }, [itemExist, url]);
 
   const handleAddToCart = () => {};
   return (
     <Card>
-      <CardMedia component="img" height="194" image={image} alt="Paella dish" />
       <CardContent>
         <Typography variant="h4" sx={{ mb: 1.5 }}>
           {name}
         </Typography>
+        <Typography variant="body1" sx={{ mb: 1.5 }}>
+          {birth_year}
+        </Typography>
         <Divider />
-        <Typography sx={{ mt: 1.5 }}>Especie: {species}</Typography>
-        <Typography sx={{ mt: 1.5 }}>Estado: {status}</Typography>
+        <Typography sx={{ mt: 1.5 }}>Genero: {gender}</Typography>
+        <Typography sx={{ mt: 1.5 }}>Altura: {height}</Typography>
       </CardContent>
       <CardActions>
         <Button fullWidth variant="contained" size="small">
