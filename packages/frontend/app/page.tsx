@@ -4,14 +4,30 @@ import React from "react";
 import { Box, Button, CircularProgress, Container, Grid, Pagination } from "@mui/material";
 import { CardComponent } from "./components/Card";
 import { HeaderComponent } from "./components/Header";
+import { Character } from "./interfaces/characters.interface";
 
 export default function Home() {
   const [page, setPage] = React.useState(1);
   const [count, setCount] = React.useState(1);
   const [allCharacters, setAllCharacters] = React.useState<
-    any[] | null
+    Character[] | null
   >(null);
   const [loading, setLoading] = React.useState<boolean>(true);
+
+  React.useEffect(() => {
+    setLoading(true);
+    
+    characters
+      .getAll({ page })
+      .then((r) => {
+        setCount(r.data.info.pages);
+        setAllCharacters(r.data.results);
+        setTimeout(() => setLoading(false), 1000);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }, [page]);
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
