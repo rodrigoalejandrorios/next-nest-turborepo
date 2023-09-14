@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useRouter } from "next/navigation";
 
 type CardProps = {
   url: string;
@@ -27,6 +28,9 @@ export const CardComponent: React.FC<CardProps> = ({
 }) => {
   const [disabledBtn, setDisabledBtn] = React.useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const router = useRouter()
+
+  const id = url.split('/').at(-2)
 
   const itemExist = useAppSelector((state) => state.cart);
 
@@ -49,7 +53,7 @@ export const CardComponent: React.FC<CardProps> = ({
         <Typography sx={{ mt: 1.5 }}>Altura: {height}</Typography>
       </CardContent>
       <CardActions>
-        <Button fullWidth variant="contained" size="small">
+        <Button fullWidth variant="contained" size="small" onClick={() => router.push(`/characters/${id}`)}>
           Learn More
         </Button>
         <Button

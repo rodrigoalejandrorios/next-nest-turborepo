@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CharacterHttpDomain } from '../../../characters/domain/character.http';
 import { CharactersService } from '../services/characters.service';
-import { Character } from 'src/characters/domain/character.interface';
+import { Character, Response } from 'src/characters/domain/character.interface';
 
 @Injectable()
 export class CharactersHttp implements CharacterHttpDomain {
   constructor(private readonly service: CharactersService) {}
-  public async findAll(): Promise<Character[]> {
-    return await this.service.getAll();
+  public async findAll({ page }: { page: string }): Promise<Response> {
+    return await this.service.getAll({ page });
   }
 
   public async findById(chId: string): Promise<Character> {

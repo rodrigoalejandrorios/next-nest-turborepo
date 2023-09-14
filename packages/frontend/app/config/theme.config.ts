@@ -11,7 +11,7 @@ export const theme = createTheme(
       mode: 'light',
       background: {
         default: COLOR_PALLETE.BACKGROUND,
-        paper: COLOR_PALLETE.MAIN,
+        //paper: COLOR_PALLETE.MAIN,
       },
       primary: {
         main: COLOR_PALLETE.PRIMARY,
@@ -97,7 +97,7 @@ export const theme = createTheme(
       MuiAppBar: {
         defaultProps: {
           style: {
-            background: COLOR_PALLETE.MAIN_SECONDARY,
+            background: '#fff',
             boxShadow: '0px 6px 20px rgba(67, 67, 67, 0.05)',
           },
         },

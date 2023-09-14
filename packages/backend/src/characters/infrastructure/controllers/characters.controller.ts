@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { FindAllCharacter } from '../../../characters/application/getAll/getAll.useCase';
 import { FindByIdCharacter } from '../../../characters/application/getById/getById.useCase';
 
@@ -10,8 +10,8 @@ export class CharactersController {
   ) {}
 
   @Get('all')
-  public async getAll() {
-    return this.findAllCharacter.execute();
+  public async getAll(@Query('page') page: string) {
+    return this.findAllCharacter.execute({ page });
   }
 
   @Get(':id')

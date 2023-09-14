@@ -1,6 +1,6 @@
-import { Character } from "./character.interface";
+import { Character, Response } from "./character.interface";
 
 export abstract class CharacterHttpDomain {
-  abstract findAll(): Promise<Character[]>;
+  abstract findAll(params: { page: string }): Promise<Response>;
   abstract findById(chId: string): Promise<Character>
 }

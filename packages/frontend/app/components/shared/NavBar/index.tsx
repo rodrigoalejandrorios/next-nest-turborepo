@@ -36,7 +36,7 @@ export const NavBar: React.FC<{}> = () => {
               alignItems="center"
             >
               <Grid item>
-                <Typography>Codrr</Typography>
+                <Typography color='black' fontWeight='bold' >SWM</Typography>
               </Grid>
               <Grid item>
                 <Stack direction="row" spacing={2}>

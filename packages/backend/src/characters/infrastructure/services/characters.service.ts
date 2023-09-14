@@ -15,19 +15,23 @@ export class CharactersService {
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
-  public async getAll(): Promise<Character[]> {
+  public async getAll({ page = '1' }: { page: string }): Promise<Response> {
     try {
       const cacheKey = 'getAll_cache';
-      const cachedData = await this.cacheManager.get<Character[]>(cacheKey);
+      const cachedData = await this.cacheManager.get<Response>(cacheKey);
       if (cachedData) {
         return cachedData;
       }
       const callPeopleAll = await lastValueFrom(
-        this.httpService.get<Response>('/'),
+        this.httpService.get<Response>('/', {
+          params: {
+            page: page,
+          },
+        }),
       );
       const { data } = callPeopleAll;
-      await this.cacheManager.set(cacheKey, data.results, 300);
-      return data.results;
+      await this.cacheManager.set(cacheKey, data, 300);
+      return data;
     } catch (error) {
       throw new Error(error.message);
     }

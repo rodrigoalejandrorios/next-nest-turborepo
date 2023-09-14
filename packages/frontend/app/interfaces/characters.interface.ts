@@ -1,3 +1,10 @@
+export interface Response {
+    count:    number;
+    next:     string;
+    previous: null;
+    results:  Character[];
+}
+
 export interface Character {
     name:       string;
     height:     string;
